@@ -40,6 +40,7 @@ public class GreeterController {
     @GetMapping("/")
     public String greet() {
         count++;
+        // greeting + hostname + count
         return String.format(RESPONSE_STRING_FORMAT, prefix, "", HOSTNAME, count);
     }
 
@@ -47,6 +48,7 @@ public class GreeterController {
     public @ResponseBody
     String eventGreet(@RequestBody String cloudEventJson) {
         count++;
+        // Add host and time to json object
         String greeterHost = String.format(RESPONSE_STRING_FORMAT, ""," Event ", HOSTNAME, count);
         JsonObject response = new JsonObject(cloudEventJson)
                                   .put("host",greeterHost.replace("\n","").trim())
